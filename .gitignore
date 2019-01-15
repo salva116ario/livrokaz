@@ -24,3 +24,6 @@ hs_err_pid*
 
 application.properties
 hibernate.cfg.xml
+.classpath
+.directory
+.project
