@@ -108,7 +108,7 @@ public class Customer implements java.io.Serializable {
 		this.cuFirstName = cuFirstName;
 	}
 
-	@Column(name = "cu_invoice_address", nullable = false, length = 65535)
+	@Column(name = "cu_invoice_address", nullable = false, length = 65535, columnDefinition="TEXT")
 	public String getCuInvoiceAddress() {
 		return this.cuInvoiceAddress;
 	}
@@ -117,7 +117,7 @@ public class Customer implements java.io.Serializable {
 		this.cuInvoiceAddress = cuInvoiceAddress;
 	}
 
-	@Column(name = "cu_delivery_address", nullable = false, length = 65535)
+	@Column(name = "cu_delivery_address", nullable = false, length = 65535, columnDefinition="TEXT")
 	public String getCuDeliveryAddress() {
 		return this.cuDeliveryAddress;
 	}
