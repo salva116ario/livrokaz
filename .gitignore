@@ -27,3 +27,9 @@ hibernate.cfg.xml
 .classpath
 .directory
 .project
+launch.json
+.setting/org.eclipse.jdt.apt.core.prefs
+.setting/org.eclipse.jdt.core.prefs
+pom.xml
+pom.properties
+settings.json
