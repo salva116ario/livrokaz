@@ -1,3 +1,4 @@
+/*
 package co.simplon.livrokaz;
 
 import javax.sql.DataSource;
@@ -12,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 public class JdbcWebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -46,3 +47,4 @@ public class JdbcWebSecurity extends WebSecurityConfigurerAdapter {
 		return dataSource;
 	}
 }
+*/

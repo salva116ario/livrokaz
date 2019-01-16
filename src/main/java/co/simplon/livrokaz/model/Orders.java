@@ -13,8 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -120,9 +120,8 @@ public class Orders implements java.io.Serializable {
 	public void setOrTotalCost(float orTotalCost) {
 		this.orTotalCost = orTotalCost;
 	}
-	
-	//@JsonBackReference
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "orderses")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orders")
 	public Set<CommandLine> getCommandLines() {
 		return this.commandLines;
 	}

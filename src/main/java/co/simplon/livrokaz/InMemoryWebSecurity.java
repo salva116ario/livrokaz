@@ -1,3 +1,4 @@
+/*
 package co.simplon.livrokaz;
 
 
@@ -41,3 +42,4 @@ public class InMemoryWebSecurity extends WebSecurityConfigurerAdapter{
 	
   }
 }
+*/
