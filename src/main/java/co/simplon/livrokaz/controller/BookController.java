@@ -1,6 +1,7 @@
 package co.simplon.livrokaz.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,18 +24,46 @@ public class BookController {
 
 	@Autowired
 	private BookRepository bookRepository;
-	
+
+	/**
+	 * Retourne la liste de tous les livres
+	 * 
+	 * @return
+	 */
 	@GetMapping("/books")
-	public ResponseEntity<?> getAllBooks(){
+	public ResponseEntity<?> getAllBooks() {
 		List<Book> bookList = null;
 		try {
 			bookList = bookRepository.findAll();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}	
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(bookList);
 	}
-	
+
+	/**
+	 * Retourne le livre dont l'id est {id}
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/books/id/{id}")
+	public ResponseEntity<?> getBookById(@PathVariable Integer id) {
+		Optional<Book> book = null;
+		try {
+			book = bookRepository.findById(id);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(book);
+	}
+
+	/**
+	 * Retourne les livres dont le titre contient {title}
+	 * 
+	 * @param title
+	 * @return
+	 */
 	@GetMapping("/books/title/{title}")
 	public ResponseEntity<?> getBooksByTitle(@PathVariable String title) {
 		Iterable<Book> books = null;
@@ -45,7 +74,13 @@ public class BookController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(books);
 	}
-	
+
+	/**
+	 * Retourne les livres dont l'éditeur contient {editor}
+	 * 
+	 * @param editor
+	 * @return
+	 */
 	@GetMapping("/books/editor/{editor}")
 	public ResponseEntity<?> getBooksByEditor(@PathVariable String editor) {
 		Iterable<Book> books = null;
@@ -56,7 +91,30 @@ public class BookController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(books);
 	}
-	
+
+	/**
+	 * Retourne les livres dont l'auteur contient {author}
+	 * 
+	 * @param author
+	 * @return
+	 */
+	@GetMapping("/books/author/{author}")
+	public ResponseEntity<?> getBooksByAuthor(@PathVariable String author) {
+		Iterable<Book> books = null;
+		try {
+			books = bookRepository.findByBoAuthorContainingIgnoreCase(author);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(books);
+	}
+
+	/**
+	 * Ajoute un livre à la BDD
+	 * 
+	 * @param book
+	 * @return
+	 */
 	@PostMapping(value = "/admin/addbook", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addBook(@RequestBody Book book) {
@@ -69,18 +127,30 @@ public class BookController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(bookToAdd);
 	}
 
+	/**
+	 * Modifie un livre de la BDD
+	 * 
+	 * @param book
+	 * @return
+	 */
 	@PutMapping(value = "/admin/modifybook", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyBook(@RequestBody Book book) {
-		Book bookToAdd = null;
+		Book bookToModify = null;
 		try {
-			bookToAdd = bookRepository.saveAndFlush(book);
+			bookToModify = bookRepository.saveAndFlush(book);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(bookToAdd);
+		return ResponseEntity.status(HttpStatus.CREATED).body(bookToModify);
 	}
-	
+
+	/**
+	 * Supprime de la BDD le livre dont l'id = {id}
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/admin/deletebook/{id}")
 	public ResponseEntity<?> deleteBook(@PathVariable Integer id) {
 		try {

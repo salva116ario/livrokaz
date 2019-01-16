@@ -6,4 +6,6 @@ import co.simplon.livrokaz.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
+	Iterable<Customer> findByCuNameContainingIgnoreCase(String name);
+
 }

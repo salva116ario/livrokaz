@@ -10,4 +10,6 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 
 	Iterable<Book> findByBoEditorContainingIgnoreCase(String editor);
 
+	Iterable<Book> findByBoAuthorContainingIgnoreCase(String author);
+
 }
