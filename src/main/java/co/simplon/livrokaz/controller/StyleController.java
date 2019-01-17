@@ -27,6 +27,10 @@ public class StyleController {
 	@Autowired
 	private StyleRepository styleRepository;
 	
+	/**
+	 * Retourne toutes les catégories de livres 
+	 * @return
+	 */
 	@GetMapping("/styles")
 	public ResponseEntity<?> getAllStyles(){
 		List<Style> styleList = null;
@@ -38,6 +42,11 @@ public class StyleController {
 		return ResponseEntity.status(HttpStatus.OK).body(styleList);
 	}
 	
+	/**
+	 * Retourne la catégorie avec id = {id}
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/styles/id/{id}")
 	public ResponseEntity<?> livreById(@PathVariable Integer id) {
 		Optional<Style> style = null;
@@ -48,7 +57,11 @@ public class StyleController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(style);
 	}
-	
+	/**
+	 * Ajoute une catégorie de livre
+	 * @param style
+	 * @return
+	 */
 	@PostMapping(value = "/admin/addstyle", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addStyle(@RequestBody Style style) {
@@ -61,6 +74,11 @@ public class StyleController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(styleToAdd);
 	}
 
+	/**
+	 * Modifie une catégorie de livres
+	 * @param style
+	 * @return
+	 */
 	@PutMapping(value = "/admin/modifystyle", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyStyle(@RequestBody Style style) {
@@ -73,6 +91,11 @@ public class StyleController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(styleToModify);
 	}
 	
+	/**
+	 * Supprime une catégorie de livres
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/admin/deletestyle/{id}")
 	public ResponseEntity<?> deleteStyle(@PathVariable Integer id) {
 		try {
