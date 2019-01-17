@@ -3,6 +3,8 @@ package co.simplon.livrokaz.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,16 +23,64 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "command_line", catalog = "livrokaz")
 public class CommandLine implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Integer clId;
 	private Book book;
 	private int clQuantity;
 	private Orders orders;
+	private Date date;
+	private boolean status;
+	private Customer customer;
 
 	public CommandLine() {
+	}
+
+	/**
+	 * @return the customer
+	 */
+	//@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "cu_id", nullable = false)
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	/**
+	 * @param customer the customer to set
+	 */
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	/**
+	 * @return the status
+	 */
+	@Column(name = "cl_status", nullable = false)
+	public boolean isStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the date
+	 */
+	@Column(name = "cl_date", nullable = false)
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public CommandLine(Book book, int clQuantity) {

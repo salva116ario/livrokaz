@@ -39,7 +39,7 @@ public class Customer implements java.io.Serializable {
 	private String cuMail;
 	private String cuPassword;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
-
+	private Set<CommandLine> commandLines = new HashSet<CommandLine>(0);
 	public Customer() {
 	}
 
@@ -152,7 +152,8 @@ public class Customer implements java.io.Serializable {
 	public void setCuPassword(String cuPassword) {
 		this.cuPassword = cuPassword;
 	}
-	//@JsonBackReference
+
+	// @JsonBackReference
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	public Set<Orders> getOrderses() {
@@ -161,6 +162,17 @@ public class Customer implements java.io.Serializable {
 
 	public void setOrderses(Set<Orders> orderses) {
 		this.orderses = orderses;
+	}
+
+	// @JsonBackReference
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+	public Set<CommandLine> getCommandLines() {
+		return this.commandLines;
+	}
+
+	public void setCommandLines(Set<CommandLine> commandLines) {
+		this.commandLines = commandLines;
 	}
 
 }
