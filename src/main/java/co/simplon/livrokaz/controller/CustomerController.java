@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import co.simplon.livrokaz.model.Customer;
 import co.simplon.livrokaz.repository.CustomerRepository;
 
 @RestController
+@RequestMapping("/customer")
 public class CustomerController {
 	
 	@Autowired
@@ -29,7 +31,7 @@ public class CustomerController {
 	 * Retourne tous les clients
 	 * @return
 	 */
-	@GetMapping("/customers")
+	@GetMapping("/getall")
 	public ResponseEntity<?> getAllCustomers() {
 		List<Customer> customerList = null;
 		try {
@@ -45,7 +47,7 @@ public class CustomerController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/customers/id/{id}")
+	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<?> getCustomerById(@PathVariable Integer id) {
 		Optional<Customer> customer = null;
 		try {
@@ -61,7 +63,7 @@ public class CustomerController {
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/customers/name/{name}")
+	@GetMapping("/getbyname/{name}")
 	public ResponseEntity<?> getCustomerByName(@PathVariable String name) {
 		Iterable<Customer> customerList = null;
 		try {
@@ -78,7 +80,7 @@ public class CustomerController {
 	 * @param customer
 	 * @return
 	 */
-	@PostMapping(value = "/admin/addcustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addCustomer(@RequestBody Customer customer) {
 		Customer customerToAdd = null;
@@ -95,7 +97,7 @@ public class CustomerController {
 	 * @param customer
 	 * @return
 	 */
-	@PutMapping(value = "/admin/modifycustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyCustomer(@RequestBody Customer customer) {
 		Customer customerToAdd = null;
@@ -112,7 +114,7 @@ public class CustomerController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/admin/deletecustomer/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable Integer id) {
 		try {
 			customerRepository.deleteById(id);

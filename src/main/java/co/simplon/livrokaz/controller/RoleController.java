@@ -17,7 +17,7 @@ public class RoleController {
     @Autowired
     private RoleRepository RoleRepository;
     
-    @GetMapping("/role")
+    @GetMapping("/role/getall")
     public ResponseEntity<?> getAll(){
         List<Role> roleList = null;
         try{

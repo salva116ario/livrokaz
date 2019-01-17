@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +22,18 @@ import co.simplon.livrokaz.model.Orders;
 import co.simplon.livrokaz.repository.OrdersRepository;
 
 @RestController
+@RequestMapping("/orders")
 public class OrdersController {
 
 	@Autowired
 	private OrdersRepository ordersRepository;
 	
-	@GetMapping("/orders")
+	/**
+	 * Retourne tous les orders
+	 * @return
+	 */
+	
+	@GetMapping("/getall")
 	public ResponseEntity<?> getAllOrders(){
 		List<Orders> ordersList = null;
 		try {
@@ -42,7 +49,7 @@ public class OrdersController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/orders/id/{id}")
+	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<?> getOrderById(@PathVariable Integer id) {
 		Optional<Orders> order = null;
 		try {
@@ -58,7 +65,7 @@ public class OrdersController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/orders/customer/{customerId}")
+	@GetMapping("/getbycustomerid/{customerId}")
 	public ResponseEntity<?> getOrderByCustomer(@PathVariable Customer customerId) {
 		Optional<Orders> order = null;
 		try {
@@ -74,7 +81,7 @@ public class OrdersController {
 	 * @param orders
 	 * @return
 	 */
-	@PostMapping(value = "/admin/addorder", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addOrder(@RequestBody Orders order) {
 		Orders orderToAdd = null;
@@ -92,7 +99,7 @@ public class OrdersController {
 	 * @return
 	 */
 
-	@PutMapping(value = "/admin/modifyorder", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyOrder(@RequestBody Orders order) {
 		Orders orderToModify = null;
@@ -109,7 +116,7 @@ public class OrdersController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/admin/deleteorder/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteOrder(@PathVariable Integer id) {
 		try {
 			ordersRepository.deleteById(id);
