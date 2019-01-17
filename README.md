@@ -1,4 +1,4 @@
-# livrokaz
+# L I V R O K A Z
 Projet Fil Rouge LIVROKAZ - Groupe Pierre Thomas Salva
 
 ## DEMARRAGE DU PROJET / TRELLO / DEFINIR VISION GLOBALE DU PROJET ET PREMIERES TACHES A REALISER
@@ -15,3 +15,5 @@ https://www.codejava.net/frameworks/hibernate/java-hibernate-reverse-engineering
 ## TESTS DES METHODES AVEC POSTMAN
 
 ## MODIFICATIONS SUR LA TABLE COMMAND_LINE ET DONC SUR LES CLASSES CommandLine & Customer
+
+## AJOUT DES CLASSES LIEES A SPRING SECURITY ET JWT (Merci à Maco(u)dou !!!)
