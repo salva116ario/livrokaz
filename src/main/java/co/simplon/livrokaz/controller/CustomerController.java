@@ -72,7 +72,12 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.OK).body(customerList);
 	}
 
-
+	/**
+	 * Ajoute un client
+	 * 
+	 * @param customer
+	 * @return
+	 */
 	@PostMapping(value = "/admin/addcustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addCustomer(@RequestBody Customer customer) {
@@ -85,6 +90,11 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerToAdd);
 	}
 
+	/**
+	 * Modifie un client
+	 * @param customer
+	 * @return
+	 */
 	@PutMapping(value = "/admin/modifycustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyCustomer(@RequestBody Customer customer) {
@@ -97,6 +107,11 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerToAdd);
 	}
 
+	/**
+	 * Supprime le client avec id = {id}
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/admin/deletecustomer/{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable Integer id) {
 		try {

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.livrokaz.model.Book;
 import co.simplon.livrokaz.model.Employees;
 import co.simplon.livrokaz.model.Role;
 import co.simplon.livrokaz.repository.EmployeesRepository;
@@ -27,6 +26,10 @@ public class EmployeesController {
 	@Autowired
 	private EmployeesRepository employeesRepository;
 	
+	/**
+	 * Retourne tous les employés
+	 * @return
+	 */
 	@GetMapping("/employees")
 	public ResponseEntity<?> getAllEmployees(){
 		List<Employees> employeesList = null;
@@ -37,6 +40,12 @@ public class EmployeesController {
 		}	
 		return ResponseEntity.status(HttpStatus.OK).body(employeesList);
 	}
+	
+	/**
+	 * Retourne l'employé dont id = {id}
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/employees/id/{id}")
 	public ResponseEntity<?> getEmployeeById(@PathVariable Integer id) {
 		Optional<Employees> employee = null;
@@ -48,6 +57,12 @@ public class EmployeesController {
 		return ResponseEntity.status(HttpStatus.OK).body(employee);
 	}
 	
+	/**
+	 * Retourne les employés selon le rôle
+	 * (dans l'url, {role} correspond à l'identifiant du rôle recherché
+	 * @param role
+	 * @return
+	 */
 	@GetMapping("/employees/role/{role}")
 	public ResponseEntity<?> getEmployeesByRole(@PathVariable Role role) {
 		Iterable<Employees> employees = null;
@@ -59,8 +74,11 @@ public class EmployeesController {
 		return ResponseEntity.status(HttpStatus.OK).body(employees);
 	}
 	
-	
-	
+	/**
+	 * Ajoute un employé
+	 * @param employee
+	 * @return
+	 */	
 	@PostMapping(value = "/admin/addemployee", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addEmployee(@RequestBody Employees employee) {
@@ -72,6 +90,12 @@ public class EmployeesController {
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(employeeToAdd);
 	}
+	
+	/**
+	 * Modifie un employé
+	 * @param employee
+	 * @return
+	 */
 	@PutMapping(value = "/admin/modifyemployee", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyEmployee(@RequestBody Employees employee) {
@@ -83,6 +107,12 @@ public class EmployeesController {
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(employeeToModify);
 	}
+	
+	/**
+	 * Supprime un employé
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/admin/deleteemployee/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable Integer id) {
 		try {
@@ -90,7 +120,6 @@ public class EmployeesController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
-
 		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 }
