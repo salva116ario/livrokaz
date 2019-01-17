@@ -72,7 +72,7 @@ public class Orders implements java.io.Serializable {
 	public void setOrId(Integer orId) {
 		this.orId = orId;
 	}
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cu_id", nullable = false)
 	public Customer getCustomer() {
