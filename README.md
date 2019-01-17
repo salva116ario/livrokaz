@@ -5,7 +5,7 @@ Projet Fil Rouge LIVROKAZ - Groupe Pierre Thomas Salva
 https://trello.com/b/4yjbHXDn/projet-fil-rouge-livreocaz
 
 ## ELABORATION DU MCD
-![MLD](/mld.png "MLD")
+![MLD](/MLD_20190117.png "MLD")
 
 ## GENERATION DES CLASSES MODELES EN REVERSE ENGINEERING AVEC JBoss Tools
 https://www.codejava.net/frameworks/hibernate/java-hibernate-reverse-engineering-tutorial-with-eclipse-and-mysql
