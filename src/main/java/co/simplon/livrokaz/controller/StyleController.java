@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import co.simplon.livrokaz.model.Style;
 import co.simplon.livrokaz.repository.StyleRepository;
 
 @RestController
+@RequestMapping("/style")
 public class StyleController {
 
 	
@@ -31,7 +33,7 @@ public class StyleController {
 	 * Retourne toutes les catégories de livres 
 	 * @return
 	 */
-	@GetMapping("/styles")
+	@GetMapping("/getall")
 	public ResponseEntity<?> getAllStyles(){
 		List<Style> styleList = null;
 		try {
@@ -47,7 +49,7 @@ public class StyleController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/styles/id/{id}")
+	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<?> livreById(@PathVariable Integer id) {
 		Optional<Style> style = null;
 		try {
@@ -62,7 +64,7 @@ public class StyleController {
 	 * @param style
 	 * @return
 	 */
-	@PostMapping(value = "/admin/addstyle", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addStyle(@RequestBody Style style) {
 		Style styleToAdd = null;
@@ -79,7 +81,7 @@ public class StyleController {
 	 * @param style
 	 * @return
 	 */
-	@PutMapping(value = "/admin/modifystyle", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyStyle(@RequestBody Style style) {
 		Style styleToModify = null;
@@ -96,7 +98,7 @@ public class StyleController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/admin/deletestyle/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteStyle(@PathVariable Integer id) {
 		try {
 			styleRepository.deleteById(id);
