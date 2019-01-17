@@ -33,7 +33,7 @@ public class CommandLineController {
 	 * @return
 	 */
 
-	@GetMapping("/getcommandlines")
+	@GetMapping("/getall")
 	public ResponseEntity<?> getAllCommandLines() {
 		List<CommandLine> commandLinesList = null;
 		try {
@@ -50,7 +50,7 @@ public class CommandLineController {
 	 * @param cuId
 	 * @return
 	 */
-	@GetMapping("/getcommandlines/{customerId}")
+	@GetMapping("/getbycustomer/{customerId}")
 	public ResponseEntity<?> getCommandLinesByCustomer(@PathVariable Customer customerId){
 		List <CommandLine> commandLines = null;
 		try {
@@ -67,7 +67,7 @@ public class CommandLineController {
 	 * @param commandLine
 	 * @return
 	 */
-	@PostMapping(value = "/addcommandline", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addBook(@RequestBody CommandLine commandLine) {
 		CommandLine commandLineToAdd = null;
@@ -85,7 +85,7 @@ public class CommandLineController {
 	 * @param commandLine
 	 * @return
 	 */
-	@PutMapping(value = "/modifycommandline", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> modifyCommandLine(@RequestBody CommandLine commandLine) {
 		CommandLine commandLineToModify = null;
@@ -103,7 +103,7 @@ public class CommandLineController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/deletecommandline/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteCommanLine(@PathVariable Integer id) {
 		try {
 			 commandLineRepository.deleteById(id);

@@ -30,7 +30,7 @@ public class Role implements java.io.Serializable {
 	private Integer roId;
 	private String roLabel;
 	private Set<Customer> customers = new HashSet<Customer>(0);
-	private Set<Employees> employeeses = new HashSet<Employees>(0);
+	private Set<Employee> employees = new HashSet<Employee>(0);
 
 	public Role() {
 	}
@@ -39,10 +39,10 @@ public class Role implements java.io.Serializable {
 		this.roLabel = roLabel;
 	}
 
-	public Role(String roLabel, Set<Customer> customers, Set<Employees> employeeses) {
+	public Role(String roLabel, Set<Customer> customers, Set<Employee> employees) {
 		this.roLabel = roLabel;
 		this.customers = customers;
-		this.employeeses = employeeses;
+		this.employees = employees;
 	}
 
 	@Id
@@ -77,12 +77,12 @@ public class Role implements java.io.Serializable {
 	}
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	public Set<Employees> getEmployeeses() {
-		return this.employeeses;
+	public Set<Employee> getEmployees() {
+		return this.employees;
 	}
 
-	public void setEmployeeses(Set<Employees> employeeses) {
-		this.employeeses = employeeses;
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
 	}
 
 }

@@ -13,32 +13,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.livrokaz.model.Employees;
+import co.simplon.livrokaz.model.Employee;
 import co.simplon.livrokaz.model.Role;
-import co.simplon.livrokaz.repository.EmployeesRepository;
+import co.simplon.livrokaz.repository.EmployeeRepository;
 
 @RestController
-public class EmployeesController {
+@RequestMapping("/employee")
+public class EmployeeController {
 	
 	@Autowired
-	private EmployeesRepository employeesRepository;
+	private EmployeeRepository employeeRepository;
 	
 	/**
 	 * Retourne tous les employés
 	 * @return
 	 */
-	@GetMapping("/employees")
+	@GetMapping("/getall")
 	public ResponseEntity<?> getAllEmployees(){
-		List<Employees> employeesList = null;
+		List<Employee> employees = null;
 		try {
-			employeesList = employeesRepository.findAll();
+			employees = employeeRepository.findAll();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}	
-		return ResponseEntity.status(HttpStatus.OK).body(employeesList);
+		return ResponseEntity.status(HttpStatus.OK).body(employees);
 	}
 	
 	/**
@@ -46,11 +48,11 @@ public class EmployeesController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/employees/id/{id}")
+	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<?> getEmployeeById(@PathVariable Integer id) {
-		Optional<Employees> employee = null;
+		Optional<Employee> employee = null;
 		try {
-			employee = employeesRepository.findById(id);
+			employee = employeeRepository.findById(id);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
@@ -63,11 +65,11 @@ public class EmployeesController {
 	 * @param role
 	 * @return
 	 */
-	@GetMapping("/employees/role/{role}")
+	@GetMapping("/getbyrole/{role}")
 	public ResponseEntity<?> getEmployeesByRole(@PathVariable Role role) {
-		Iterable<Employees> employees = null;
+		Iterable<Employee> employees = null;
 		try {
-			employees = employeesRepository.findByRole(role);
+			employees = employeeRepository.findByRole(role);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
@@ -79,12 +81,12 @@ public class EmployeesController {
 	 * @param employee
 	 * @return
 	 */	
-	@PostMapping(value = "/admin/addemployee", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> addEmployee(@RequestBody Employees employee) {
-		Employees employeeToAdd = null;
+	public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
+		Employee employeeToAdd = null;
 		try {
-			employeeToAdd = employeesRepository.saveAndFlush(employee);
+			employeeToAdd = employeeRepository.saveAndFlush(employee);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -96,12 +98,12 @@ public class EmployeesController {
 	 * @param employee
 	 * @return
 	 */
-	@PutMapping(value = "/admin/modifyemployee", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> modifyEmployee(@RequestBody Employees employee) {
-		Employees employeeToModify = null;
+	public ResponseEntity<?> modifyEmployee(@RequestBody Employee employee) {
+		Employee employeeToModify = null;
 		try {
-			employeeToModify = employeesRepository.saveAndFlush(employee);
+			employeeToModify = employeeRepository.saveAndFlush(employee);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -113,10 +115,10 @@ public class EmployeesController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(value = "/admin/deleteemployee/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteEmployee(@PathVariable Integer id) {
 		try {
-			employeesRepository.deleteById(id);
+			employeeRepository.deleteById(id);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
