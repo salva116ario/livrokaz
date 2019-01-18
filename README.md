@@ -26,13 +26,13 @@ https://trello.com/b/4yjbHXDn/projet-fil-rouge-livreocaz
 
    ![MLD](/MLD_20190117.png "MLD")
 
-## GENERATION DES CLASSES MODELES EN REVERSE ENGINEERING AVEC JBoss Tools
+#### GENERATION DES CLASSES MODELES EN REVERSE ENGINEERING AVEC JBoss Tools
   
 https://www.codejava.net/frameworks/hibernate/java-hibernate-reverse-engineering-tutorial-with-eclipse-and-mysql
 
     cet outil permet a partir des tables sql de générer les class correspondantes avec les annotations.
 
-POUR CHAQUE ENTITE, CREATION DES METHODES DE CRUD
+CREATION DES METHODES DE CRUD
 -------------------------------------------------
 
     Pour chaque class ainsi généree,on a codé les méthodes get,post,put et delete
