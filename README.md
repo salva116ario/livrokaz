@@ -35,7 +35,7 @@ https://www.codejava.net/frameworks/hibernate/java-hibernate-reverse-engineering
 CREATION DES METHODES DE CRUD
 -------------------------------------------------
 
-    Pour chaque class ainsi généree,on a codé les méthodes get,post,put et delete
+    Pour chaque class ainsi générée,on a codé les méthodes get,post,put et delete
     On retravaillera l'architecture de nos classes pour les separer en controllers et en service.
     Les controllers associent les routes aux fonctions des différents services.
 
