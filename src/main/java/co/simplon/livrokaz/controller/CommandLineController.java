@@ -1,6 +1,7 @@
 package co.simplon.livrokaz.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +53,7 @@ public class CommandLineController {
 	 */
 	@GetMapping("/getbycustomer/{customerId}")
 	public ResponseEntity<?> getCommandLinesByCustomer(@PathVariable Customer customerId){
-		List <CommandLine> commandLines = null;
+		Set <CommandLine> commandLines = null;
 		try {
 			commandLines = commandLineRepository.findByCustomer(customerId);
 		} catch (Exception e) {
@@ -62,14 +63,14 @@ public class CommandLineController {
 	}
 
 	/**
-	 * Ajouter un ligne de commande à la BDD
+	 * Ajouter une ligne de commande à la BDD
 	 * 
 	 * @param commandLine
 	 * @return
 	 */
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> addBook(@RequestBody CommandLine commandLine) {
+	public ResponseEntity<?> addCommandLine(@RequestBody CommandLine commandLine) {
 		CommandLine commandLineToAdd = null;
 		try {
 			commandLineToAdd = commandLineRepository.saveAndFlush(commandLine);

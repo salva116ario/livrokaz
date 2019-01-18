@@ -3,6 +3,7 @@ package co.simplon.livrokaz.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -59,6 +60,10 @@ public class Orders implements java.io.Serializable {
 		this.orShippingCosts = orShippingCosts;
 		this.orTotalCost = orTotalCost;
 		this.commandLines = commandLines;
+	}
+
+	public Orders(Customer customer2, Date date, boolean b, Set<CommandLine> commandLines2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Id

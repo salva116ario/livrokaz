@@ -3,7 +3,7 @@ package co.simplon.livrokaz.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,8 +29,8 @@ public class CommandLine implements java.io.Serializable {
 	private Book book;
 	private int clQuantity;
 	private Orders orders;
-	private Date date;
-	private boolean status;
+	private Date clDate;
+	private boolean clStatus;
 	private Customer customer;
 
 	public CommandLine() {
@@ -57,15 +57,15 @@ public class CommandLine implements java.io.Serializable {
 	 * @return the status
 	 */
 	@Column(name = "cl_status", nullable = false)
-	public boolean isStatus() {
-		return status;
+	public boolean getClStatus() {
+		return clStatus;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setClStatus(boolean status) {
+		this.clStatus = status;
 	}
 
 	/**
@@ -73,14 +73,14 @@ public class CommandLine implements java.io.Serializable {
 	 */
 	@Column(name = "cl_date", nullable = false)
 	public Date getDate() {
-		return date;
+		return clDate;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
 	public void setDate(Date date) {
-		this.date = date;
+		this.clDate = date;
 	}
 
 	public CommandLine(Book book, int clQuantity) {
@@ -93,6 +93,8 @@ public class CommandLine implements java.io.Serializable {
 		this.clQuantity = clQuantity;
 		this.orders = orderses;
 	}
+
+
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -128,7 +130,7 @@ public class CommandLine implements java.io.Serializable {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "or_id", nullable = false)
+	@JoinColumn(name = "or_id", nullable = true)
 	public Orders getOrders() {
 		return this.orders;
 	}

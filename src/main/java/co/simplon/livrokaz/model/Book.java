@@ -43,7 +43,7 @@ public class Book implements java.io.Serializable {
 	private String boTopic;
 	private String boSynopsys;
 	private Date boReleaseDate;
-	private BigDecimal boPrice;
+	private float boPrice;
 	private int boStock;
 	private String boLanguage;
 	private Set<CommandLine> commandLines = new HashSet<CommandLine>(0);
@@ -52,7 +52,7 @@ public class Book implements java.io.Serializable {
 	}
 
 	public Book(Style style, String boTitle, String boAuthor, String boEditor, String boIsbn, String boCover,
-			String boTopic, String boSynopsys, Date boReleaseDate, BigDecimal boPrice, int boStock, String boLanguage) {
+			String boTopic, String boSynopsys, Date boReleaseDate, float boPrice, int boStock, String boLanguage) {
 		this.style = style;
 		this.boTitle = boTitle;
 		this.boAuthor = boAuthor;
@@ -68,7 +68,7 @@ public class Book implements java.io.Serializable {
 	}
 
 	public Book(Style style, String boTitle, String boAuthor, String boEditor, String boIsbn, String boCover,
-			String boTopic, String boSynopsys, Date boReleaseDate, BigDecimal boPrice, int boStock, String boLanguage,
+			String boTopic, String boSynopsys, Date boReleaseDate, float boPrice, int boStock, String boLanguage,
 			Set<CommandLine> commandLines) {
 		this.style = style;
 		this.boTitle = boTitle;
@@ -182,11 +182,11 @@ public class Book implements java.io.Serializable {
 	}
 
 	@Column(name = "bo_price", nullable = false, precision = 15, scale = 3)
-	public BigDecimal getBoPrice() {
+	public float getBoPrice() {
 		return this.boPrice;
 	}
 
-	public void setBoPrice(BigDecimal boPrice) {
+	public void setBoPrice(float boPrice) {
 		this.boPrice = boPrice;
 	}
 
