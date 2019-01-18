@@ -137,3 +137,6 @@ INSERT INTO `employee` (`em_id`, `em_mail`, `em_password`, `ro_id`) VALUES
 (2, 'ad@mi.n', 'admin', 3);
 ```
 
+REPARTITION DU TRAVAIL EFFECTUE
+-------------------------------
+![Repartition](/repartition.png "Répartition")
