@@ -11,7 +11,7 @@ Projet Fil Rouge LIVROKAZ - Groupe Pierre Thomas Salva
 
 #### DEFINIR VISION GLOBALE DU PROJET ET PREMIERES TACHES A REALISER
 
-    https://trello.com/b/4yjbHXDn/projet-fil-rouge-livreocaz
+https://trello.com/b/4yjbHXDn/projet-fil-rouge-livreocaz
 
 #### LANGAGES DE PROGRAMMATION ET FRAMEWORKS UTILISÉS
 
