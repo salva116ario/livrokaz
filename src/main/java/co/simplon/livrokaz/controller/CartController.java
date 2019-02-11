@@ -78,7 +78,7 @@ public class CartController {
 			Set<CommandLine> commandLines = new HashSet<>(0);
 			commandLines = commandLineRepository.findByCustomerAndClStatus(customer, false);
 			Date date = new Date();
-			Orders orders = new Orders(customer, false,date, 0, 0, commandLines);
+			Orders orders = new Orders(customer, false, date, 0, 0, commandLines);
 			ordersController.addOrder(orders);
 			float totalPrice = 0;
 			for (CommandLine commandLine : commandLines) {
