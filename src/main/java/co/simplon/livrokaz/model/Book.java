@@ -91,7 +91,7 @@ public class Book implements java.io.Serializable {
 	public void setBoId(Integer boId) {
 		this.boId = boId;
 	}
-
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "st_id", nullable = false)
 	public Style getStyle() {
