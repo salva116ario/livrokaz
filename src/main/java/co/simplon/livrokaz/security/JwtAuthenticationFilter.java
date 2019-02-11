@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 
-import co.simplon.livrokaz.model.User;
+import co.simplon.livrokaz.model.User0ld;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = getJWTFromRequest(httpServletRequest);
             if(StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
-                User userDetails = customUserDetailsService.loadUserById(userId);
+                User0ld userDetails = customUserDetailsService.loadUserById(userId);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, Collections.emptyList()

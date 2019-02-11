@@ -54,7 +54,7 @@ public class CartController {
 			commandLine.setBook(book);
 			commandLine.setCustomer(customer);
 			commandLine.setClQuantity(quantity);
-			commandLine.setDate(date);
+			commandLine.setClDate(date);
 			commandLine.setClStatus(false);
 			commandLineController.addCommandLine(commandLine);
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class CartController {
 			Set<CommandLine> commandLines = new HashSet<>(0);
 			commandLines = commandLineRepository.findByCustomerAndClStatus(customer, false);
 			Date date = new Date();
-			Orders orders = new Orders(customer, date, false, 0, 0, commandLines);
+			Orders orders = new Orders(customer, false,date, 0, 0, commandLines);
 			ordersController.addOrder(orders);
 			float totalPrice = 0;
 			for (CommandLine commandLine : commandLines) {

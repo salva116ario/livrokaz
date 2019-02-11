@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Built-By: otto
-Build-Jdk: 9.0.7.1
 Implementation-Title: livrokaz
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: otto
 Implementation-Vendor-Id: co.simplon
+Build-Jdk: 1.8.0_201
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/livrokaz
 Created-By: Maven Integration for Eclipse

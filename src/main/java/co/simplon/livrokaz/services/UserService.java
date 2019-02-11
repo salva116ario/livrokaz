@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.simplon.livrokaz.exceptions.UsernameAlreadyExistException;
-import co.simplon.livrokaz.model.User;
+import co.simplon.livrokaz.model.User0ld;
 import co.simplon.livrokaz.repository.UserRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User saveUser(User newUser){
+    public User0ld saveUser(User0ld newUser){
         try {
             newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
             //S'assurer que le username est unique

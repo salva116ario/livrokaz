@@ -12,7 +12,7 @@ import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import co.simplon.livrokaz.model.User;
+import co.simplon.livrokaz.model.User0ld;
 
 @Component
 public class JwtTokenProvider {
@@ -21,7 +21,7 @@ public class JwtTokenProvider {
     //1. Generer le le token
 
     public String generateToken(Authentication authentication){
-        User user = (User)authentication.getPrincipal();
+        User0ld user = (User0ld)authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
         Date expireDate = new Date(now.getTime() + TOKEN_EXPIRATION_TIME);
         String userId = Long.toString(user.getId());
