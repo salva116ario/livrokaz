@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.simplon.livrokaz.model.User;
 import co.simplon.livrokaz.model.User0ld;
 import co.simplon.livrokaz.payload.JWTLoginSuccessResponse;
 import co.simplon.livrokaz.payload.LoginRequest;
@@ -47,13 +48,13 @@ public class UserController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUSer(@Valid @RequestBody User0ld user, BindingResult result){
+    public ResponseEntity<?> registerUSer(@Valid @RequestBody User user, BindingResult result){
         userValidator.validate(user, result);
         ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
         if(errorMap != null)
             return  errorMap;
-        User0ld newUser = userService.saveUser(user);
-        return new ResponseEntity<User0ld>(newUser, HttpStatus.CREATED);
+        User newUser = userService.saveUser(user);
+        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

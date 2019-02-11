@@ -1,5 +1,16 @@
 package co.simplon.livrokaz.security;
 
+import static co.simplon.livrokaz.security.SecurityConstants.HEADER_STRING;
+import static co.simplon.livrokaz.security.SecurityConstants.TOKEN_PREFIX;
+
+import java.io.IOException;
+import java.util.Collections;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,18 +18,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
-import co.simplon.livrokaz.model.User0ld;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Collections;
-
+import co.simplon.livrokaz.model.User;
 import co.simplon.livrokaz.services.CustomUserDetailsService;
-import static co.simplon.livrokaz.security.SecurityConstants.HEADER_STRING;
-import static co.simplon.livrokaz.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -35,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = getJWTFromRequest(httpServletRequest);
             if(StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
-                User0ld userDetails = customUserDetailsService.loadUserById(userId);
+                User userDetails = customUserDetailsService.loadUserById(userId);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, Collections.emptyList()

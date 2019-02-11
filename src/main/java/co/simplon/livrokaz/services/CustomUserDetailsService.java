@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.simplon.livrokaz.model.User;
 import co.simplon.livrokaz.model.User0ld;
 import co.simplon.livrokaz.repository.UserRepository;
 
@@ -17,15 +18,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User0ld user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         if(user == null)
             new UsernameNotFoundException("Utilisateur introuvable !!!");
         return user;
     }
 
     @Transactional
-    public User0ld loadUserById(Long id){
-        User0ld user = userRepository.getById(id);
+    public User loadUserById(Long id){
+        User user = userRepository.getById(id);
         if(user == null)
             new UsernameNotFoundException("Utilisateur introuvable !!!");
         return user;
