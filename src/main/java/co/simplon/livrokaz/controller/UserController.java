@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.livrokaz.model.User;
-import co.simplon.livrokaz.model.User0ld;
 import co.simplon.livrokaz.payload.JWTLoginSuccessResponse;
 import co.simplon.livrokaz.payload.LoginRequest;
 import co.simplon.livrokaz.security.JwtTokenProvider;
@@ -29,7 +28,7 @@ import co.simplon.livrokaz.validators.UserValidator;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
