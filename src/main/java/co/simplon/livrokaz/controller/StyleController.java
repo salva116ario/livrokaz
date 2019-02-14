@@ -23,7 +23,7 @@ import co.simplon.livrokaz.repository.StyleRepository;
 
 @RestController
 @RequestMapping("/style")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class StyleController {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class StyleController {
 	 * @return
 	 */
 	@GetMapping("/getall")
-	public ResponseEntity<?> getAllStyles() {
+	public ResponseEntity<List<Style>> getAllStyles() {
 		List<Style> styleList = null;
 		try {
 			styleList = styleRepository.findAll();

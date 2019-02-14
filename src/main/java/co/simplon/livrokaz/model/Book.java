@@ -184,7 +184,7 @@ public class Book implements java.io.Serializable {
 		this.boSynopsys = boSynopsys;
 	}
 
-	@Column(name = "bo_title", nullable = false, length = 50)
+	@Column(name = "bo_title", nullable = false, length = 255)
 	public String getBoTitle() {
 		return this.boTitle;
 	}
